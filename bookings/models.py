@@ -29,8 +29,18 @@ from django.contrib.auth.models import User
 from decimal import Decimal
 from datetime import date
 
-# Represents a room available for booking.
+
 class Room(models.Model):
+    """
+    Represents a room available for booking.
+
+    Attributes:
+        name (str): The name of the room.
+        room_type (str): The type of the room (single, double, or suite).
+        price_per_night (Decimal): The price per night for the room.
+        description (str): A description of the room.
+        image (ImageField): An optional image representing the room.
+    """
     ROOM_TYPES = [
         ('single', 'Single Room'),
         ('double', 'Double Room'),
@@ -44,10 +54,29 @@ class Room(models.Model):
     image = models.ImageField(upload_to='room_images/', null=True, blank=True)
 
     def __str__(self):
+        """
+        Returns a string representation of the room, including its name and type.
+        
+        Returns:
+            str: A formatted string representing the room.
+        """
         return f"{self.name} ({self.get_room_type_display()})"
 
-# Represents a booking made by a user.
+
 class Booking(models.Model):
+    """
+    Represents a booking made by a user.
+
+    Attributes:
+        user (ForeignKey): A reference to the user who made the booking.
+        room (ForeignKey): A reference to the room being booked.
+        booking_date (date): The date of the booking.
+        nights (int): The duration of the booking in nights.
+        total_price (Decimal): The total price for the booking.
+        created_at (DateTime): The timestamp when the booking was created.
+        is_cancelled (bool): Indicates whether the booking has been cancelled.
+        refund_amount (Decimal): The refund amount in case of cancellation.
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     booking_date = models.DateField()
@@ -58,10 +87,20 @@ class Booking(models.Model):
     refund_amount = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
     def save(self, *args, **kwargs):
+        """
+        Overrides the default save method to automatically calculate the total price
+        based on the room price and number of nights.
+        """
         self.total_price = self.nights * self.room.price_per_night
         super().save(*args, **kwargs)
 
     def calculate_refund(self):
+        """
+        Calculates the refund amount based on how many days in advance the booking is cancelled.
+        
+        Returns:
+            Decimal: The refund amount.
+        """
         days_before_booking = (self.booking_date - date.today()).days
 
         if days_before_booking >= 14:
@@ -72,12 +111,31 @@ class Booking(models.Model):
             return Decimal('0')  # No refund
 
     def __str__(self):
+        """
+        Returns a string representation of the booking.
+        
+        Returns:
+            str: A formatted string representing the booking.
+        """
         return f"Booking by {self.user.username} for {self.room.name}"
 
 # Represents additional information about a user.
 class UserProfile(models.Model):
+    """
+    Represents additional information about a user.
+
+    Attributes:
+        user (OneToOneField): A one-to-one relationship with the User model.
+        profile_picture (ImageField): An optional profile picture for the user.
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
 
     def __str__(self):
+        """
+        Returns a string representation of the user profile.
+        
+        Returns:
+            str: The username of the associated user.
+        """
         return self.user.username
