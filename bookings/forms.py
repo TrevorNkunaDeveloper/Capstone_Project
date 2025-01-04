@@ -18,6 +18,21 @@ from .models import Booking
 # Form for user registration.
 # Inherits from forms.ModelForm to handle user registration fields.
 class UserRegistrationForm(forms.ModelForm):
+    """
+    A form for registering new users, extending the built-in Django User model.
+    
+    Attributes:
+        password (CharField): A password input field styled with Bootstrap.
+        password_confirm (CharField): A password confirmation input field styled with Bootstrap.
+    
+    Meta:
+        model (User): Specifies that this form is based on the built-in Django User model.
+        fields (list): Specifies the fields to be displayed in the form (username, email, password).
+        widgets (dict): Applies Bootstrap styling to the username and email fields.
+    
+    Methods:
+        clean_password_confirm(): Validates that the password and password confirmation match.
+    """
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     password_confirm = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
@@ -30,6 +45,15 @@ class UserRegistrationForm(forms.ModelForm):
         }
 
     def clean_password_confirm(self):
+        """
+        Validates that the password and password confirmation match.
+        
+        Returns:
+            str: The confirmed password if it matches the original password.
+        
+        Raises:
+            forms.ValidationError: If the passwords do not match.
+        """
         password = self.cleaned_data.get('password')
         password_confirm = self.cleaned_data.get('password_confirm')
         if password and password_confirm and password != password_confirm:
@@ -39,6 +63,14 @@ class UserRegistrationForm(forms.ModelForm):
 # Form for making a booking.
 # Inherits from forms.ModelForm to handle booking-related fields.
 class BookingForm(forms.ModelForm):
+    """
+    A form for creating and managing bookings, extending the Booking model.
+    
+    Meta:
+        model (Booking): Specifies that this form is based on the Booking model.
+        fields (list): Specifies the fields to be displayed in the form (room, booking_date, nights).
+        widgets (dict): Applies Bootstrap styling to the form fields (room, booking_date, nights).
+    """
     class Meta:
         model = Booking
         fields = ['room', 'booking_date', 'nights']
