@@ -128,7 +128,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # WebSockets configuration
-ASGI_APPLICATION = 'samantha_booking.asgi.application'
+ASGI_APPLICATION = 'booking_system.asgi.application'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
