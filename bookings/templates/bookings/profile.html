@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h2 class="text-center">Welcome, {{ user.username }}</h2>
+
+{% if user.userprofile.profile_picture %}
+    <img src="{{ user.userprofile.profile_picture.url }}" alt="Profile Picture" class="img-thumbnail mb-3" width="150">
+{% else %}
+    <p>No profile picture available.</p>
+{% endif %}
+
+<h3>Your Booking History</h3>
+
+{% if bookings %}
+    <ul class="list-group">
+        {% for booking in bookings %}
+        <div class="booking mb-4">
+            <p><strong>Room:</strong> {{ booking.room.name }} ({{ booking.room.get_room_type_display }})</p>
+            <p><strong>Date:</strong> {{ booking.booking_date }}</p>
+            <p><strong>Nights:</strong> {{ booking.nights }}</p>
+            <p><strong>Total Price:</strong> R{{ booking.total_price|floatformat:2 }}</p>
+
+            {% if not booking.is_cancelled %}
+                <a href="{% url 'payment_page' %}" class="btn btn-primary btn-sm">Make Payment</a>
+                <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-danger btn-sm">Cancel Booking</a>
+                <a href="{% url 'reschedule_booking' booking.id %}" class="btn btn-warning btn-sm">Reschedule Booking</a>
+            {% else %}
+                <p class="text-danger"><strong>Booking Cancelled</strong></p>
+                <p><strong>Refund Amount:</strong> R{{ booking.refund_amount|floatformat:2 }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You have no bookings yet.</p>
+{% endif %}
+{% endblock %}
