@@ -44,3 +44,71 @@ Follow these steps to set up the project on your local machine:
    ```bash
    git clone https://github.com/TrevorNkunaDeveloper/Capstone_Project.git
    cd Capstone_Project
+   ```
+2. **Create a Virtual Environment**:
+   ```python -m venv venv
+      source venv/bin/activate  # On Windows use: venv\Scripts\activate
+   ```
+  
+3. **Install Dependencies**:
+   ```pip install -r requirements.txt
+   ```
+4. **Apply Migrations**:
+   ```python manage.py migrate
+   ```
+
+5. **Run the Server**:
+   ```python manage.py runserver
+   ```
+
+
+## Usage
+1. Register a new user account or log in with an existing account.
+2. Navigate to the Booking Page to select a room and make a booking.
+3. Go to the Profile Page to view your booking history.
+4. Cancel or Reschedule any existing bookings.
+5. Complete the booking process by simulating a Payment.
+
+
+## Screenshots
+### Booking Page
+![Booking Page](docs/source/_static/booking.png)
+
+### Cancel Booking Page
+![Cancel Booking Page](docs/source/_static/cancel_booking.png)
+
+### Confirm Booking Page
+![Confirm Booking Page](docs/source/_static/confirm_booking.png)
+
+### Home Page
+![Home Page](docs/source/_static/home.png)
+
+### Payment Page
+![Payment Page](docs/source/_static/payment.png)
+
+### Payment Success Page
+![Payment Success Page](docs/source/_static/payment_success.png)
+
+### Reschedule Booking Page
+![Reschedule Booking Page](docs/source/_static/reschedule.png)
+
+
+## Technologies Used
+Django: Web framework for building the backend.
+Django REST Framework: For building RESTful APIs.
+SQLite: Database used for development.
+Bootstrap: Used for responsive and clean UI design.
+Sphinx: For generating project documentation.
+Docker: For containerization and deployment.
+Gunicorn: WSGI server for deployment.
+Whitenoise: For serving static files in production.
+
+## Documentation
+The full project documentation is generated using Sphinx. 
+You can view it by opening the index.html file in the docs/build directory.
+
+## Credits
+This project was developed by Trevor Nkuna. Special thanks to the Django, Bootstrap, and Docker communities for their valuable resources and support.
+
+## License
+This project is fully open source annd available for use for free.
