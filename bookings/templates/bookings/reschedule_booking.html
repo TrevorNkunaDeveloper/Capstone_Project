@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Reschedule Booking{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4">Reschedule Booking</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="new_booking_date" class="form-label">New Booking Date</label>
+            <input type="date" class="form-control" id="new_booking_date" name="new_booking_date" required>
+        </div>
+        <button type="submit" class="btn btn-warning">Reschedule</button>
+    </form>
+</div>
+{% endblock %}

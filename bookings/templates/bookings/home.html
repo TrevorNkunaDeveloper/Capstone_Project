@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Welcome to Trevor's B&B{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="hero-section">
+        <div class="overlay"></div>
+        <h1 class="display-4">Welcome to Trevor's B&B</h1>
+        <p class="lead">Your cozy stay awaits. Book your room now and enjoy a peaceful getaway!</p>
+        <a href="{% url 'booking_page' %}" class="btn btn-custom btn-lg">Book a Room</a>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'delicious_breakfast.jpg' %}" class="card-img-top" alt="Breakfast">
+                <div class="card-body">
+                    <h5 class="card-title">Delicious Breakfast</h5>
+                    <p class="card-text">Start your day with a hearty and delicious breakfast served fresh every morning.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'peaceful_getaway.jpg' %}" class="card-img-top" alt="Room">
+                <div class="card-body">
+                    <h5 class="card-title">Comfortable Rooms</h5>
+                    <p class="card-text">Enjoy our cozy, well-furnished rooms designed for a relaxing stay.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'scenic_surroundings.jpg' %}" class="card-img-top" alt="Nature">
+                <div class="card-body">
+                    <h5 class="card-title">Scenic Surroundings</h5>
+                    <p class="card-text">Experience the tranquility of nature and breathtaking views.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
