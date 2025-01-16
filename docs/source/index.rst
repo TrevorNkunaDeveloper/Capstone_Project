@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Accomodation Booking System documentation
+Welcome to Accomodation Booking System documentation
 =========================================
 
 Add your content using ``reStructuredText`` syntax. See the
@@ -17,4 +17,5 @@ documentation for details.
 
    index
    screenshots
+   instructions
 
