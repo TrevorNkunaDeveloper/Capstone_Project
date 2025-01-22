@@ -48,9 +48,7 @@ Follow these steps to install and set up the project on your local machine:
 
 6. **Access the Application:**
    Open a web browser and navigate to:
-
-
-
+   
 Usage
 -----
 Once the project is running, you can perform the following actions:
