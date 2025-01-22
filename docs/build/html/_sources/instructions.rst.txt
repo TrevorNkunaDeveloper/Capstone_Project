@@ -11,7 +11,7 @@ Follow these steps to install and set up the project on your local machine:
    Clone the project's repository from GitHub using the following command:
    .. code-block:: bash
 
-       git clone https://github.com/TrevorNkunaDeveloper/Capstone_Project.git 
+       git clone https://github.com/YourRepo/AccomodationBookingSystem.git
 
 2. **Set Up a Virtual Environment:**
    Create and activate a virtual environment for the project:
